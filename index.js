@@ -1,104 +1,157 @@
+
+const DATA_URL = './terms.json';
+
 const pad2 = (n) => String(n).padStart(2, '0');
-    const total = 9;
-    const counter = document.getElementById('counter');
-    const view = document.getElementById('view');
-    const btns = Array.from(document.querySelectorAll('.navbtn'));
 
-    const categories = [" Tech Basics", " Files & Workspace", " Internet & Web", " Client–Server & API", " HTTP Methods & Codes", " Browser & DevTools", " Standards & Quality", " HTML (Last) Core", " HTML Common Tags (Last)"];
-    const termMap = { " Tech Basics": [{ "t": "Computer", "ge": "მოწყობილობა, რომელიც ამუშავებს მონაცემებს და ასრულებს ინსტრუქციებს.", "en": "A machine that processes data and executes instructions." }, { "t": "Hardware", "ge": "კომპიუტერის ფიზიკური ნაწილები (CPU, RAM, დისკი...).", "en": "The physical parts of a computer (CPU, RAM, disk...)." }, { "t": "Software", "ge": "პროგრამები/სისტემები, რაც კომპიუტერზე მუშაობს.", "en": "Programs/systems that run on a computer." }, { "t": "Program", "ge": "ინსტრუქციების ნაკრები, რომელიც კონკრეტულ ამოცანას ასრულებს.", "en": "A set of instructions that performs a task." }, { "t": "Application (App)", "ge": "მომხმარებლისთვის განკუთვნილი პროგრამა (მაგ: Chrome).", "en": "A user-facing program (e.g., Chrome)." }, { "t": "Operating System (OS)", "ge": "მართავს რესურსებს და უშვებს პროგრამებს.", "en": "Manages resources and runs programs." }, { "t": "Windows", "ge": "Microsoft-ის ოპერაციული სისტემა.", "en": "Microsoft operating system." }, { "t": "macOS", "ge": "Apple-ის ოპერაციული სისტემა.", "en": "Apple operating system." }, { "t": "Linux", "ge": "ღია კოდის ოპერაციული სისტემების ოჯახი.", "en": "A family of open-source operating systems." }, { "t": "CPU", "ge": "პროცესორი — აკეთებს გამოთვლებს.", "en": "Processor — performs computations." }, { "t": "RAM", "ge": "სამუშაო მეხსიერება — დროებითი, სწრაფი.", "en": "Working memory — temporary and fast." }, { "t": "Storage", "ge": "მუდმივი შენახვა (SSD/HDD).", "en": "Persistent storage (SSD/HDD)." }, { "t": "Input", "ge": "მონაცემის შეყვანა (კლავიატურა, მაუსი).", "en": "Data you send in (keyboard, mouse)." }, { "t": "Output", "ge": "შედეგის გამოყვანა (ეკრანი, ხმა).", "en": "The result you get out (screen, sound)." }, { "t": "Data", "ge": "ინფორმაცია, რომელსაც სისტემა ამუშავებს.", "en": "Information a system processes." }, { "t": "Algorithm", "ge": "ნაბიჯ-ნაბიჯ მეთოდი პრობლემის გადასაჭრელად.", "en": "A step-by-step method to solve a problem." }], "📁 Files & Workspace": [{ "t": "File", "ge": "შენახული მონაცემის ერთეული (index.html).", "en": "A saved unit of data (index.html)." }, { "t": "Folder / Directory", "ge": "ფაილების ჯგუფი ორგანიზებისთვის.", "en": "A container to organize files." }, { "t": "Path", "ge": "მისამართი ფაილამდე საქაღალდეებში.", "en": "An address to a file in folders." }, { "t": "Relative path", "ge": "მისამართი მიმდინარე ადგილიდან.", "en": "A path from the current location." }, { "t": "Absolute path", "ge": "სრული მისამართი root-იდან/დისკიდან.", "en": "A full path from root/disk." }, { "t": "File extension", "ge": "ფაილის ტიპი (.html, .png...).", "en": "File type suffix (.html, .png...)." }, { "t": "Project", "ge": "ერთ საქაღალდეში ორგანიზებული კოდი/ფაილები.", "en": "Code/files organized in one folder." }, { "t": "Source code", "ge": "კოდი, რომელსაც ვწერთ (HTML...).", "en": "The code we write (HTML...)." }, { "t": "Text editor", "ge": "კოდის დასაწერი პროგრამა.", "en": "A program for writing code." }, { "t": "VS Code", "ge": "პოპულარული კოდის რედაქტორი.", "en": "A popular code editor." }, { "t": "Terminal", "ge": "ბრძანებების გასაშვები ტექსტური ფანჯარა.", "en": "A text window to run commands." }, { "t": "Command line", "ge": "ბრძანებების ჩაწერა ტერმინალში.", "en": "Typing commands in the terminal." }, { "t": "Install", "ge": "დაყენება/ინსტალაცია.", "en": "To set up software." }, { "t": "Update", "ge": "განახლება ახალ ვერსიაზე.", "en": "Upgrade to a newer version." }], "🌐 Internet & Web": [{ "t": "Internet", "ge": "ქსელი, რომელიც აერთებს მოწყობილობებს.", "en": "The network connecting devices worldwide." }, { "t": "World Wide Web (WWW)", "ge": "ვებგვერდების სისტემა ინტერნეტზე.", "en": "The system of web pages on the Internet." }, { "t": "Website", "ge": "გვერდების集合 ერთ დომენზე.", "en": "A collection of pages under one domain." }, { "t": "Web page", "ge": "საიტის ერთი გვერდი.", "en": "A single page on a site." }, { "t": "URL", "ge": "ვებ-მისამართი რესურსამდე.", "en": "The web address to a resource." }, { "t": "Domain", "ge": "დასამახსოვრებელი სახელი (example.com).", "en": "A human-friendly name (example.com)." }, { "t": "Subdomain", "ge": "დომენის ქვედომენი (blog.example.com).", "en": "A sub-part of a domain (blog.example.com)." }, { "t": "IP Address", "ge": "რიცხვითი მისამართი ქსელში.", "en": "A numeric address on a network." }, { "t": "DNS", "ge": "დომენს IP-ად აქცევს/პოულობს.", "en": "Maps domain names to IP addresses." }, { "t": "Protocol", "ge": "კომუნიკაციის წესები.", "en": "Rules for communication." }, { "t": "HTTP", "ge": "ვებ-კომუნიკაციის პროტოკოლი.", "en": "Web communication protocol." }, { "t": "HTTPS", "ge": "HTTP + დაშიფვრა (უსაფრთხო).", "en": "HTTP + encryption (secure)." }, { "t": "Host", "ge": "სერვერის მისამართი/მოწყობილობა.", "en": "The server machine/address." }, { "t": "Port", "ge": "სერვისის არხის ნომერი (3000/443).", "en": "A service channel number (3000/443)." }, { "t": "Localhost", "ge": "შენი კომპიუტერი როგორც სერვერი (127.0.0.1).", "en": "Your own machine as a server (127.0.0.1)." }], "🔄 Client–Server & API": [{ "t": "Client", "ge": "მომთხოვნი მხარე — ხშირად ბრაუზერი.", "en": "The requester — often a browser." }, { "t": "Server", "ge": "მომსახურე მხარე — აბრუნებს პასუხს.", "en": "The provider — returns responses." }, { "t": "Request", "ge": "კლიენტის მოთხოვნა.", "en": "A client’s request." }, { "t": "Response", "ge": "სერვერის პასუხი.", "en": "A server’s response." }, { "t": "Endpoint", "ge": "API-ის კონკრეტული მისამართი ( /users ).", "en": "A specific API address ( /users )." }, { "t": "API", "ge": "ინტერფეისი სერვისთან ურთიერთობისთვის.", "en": "An interface to interact with a service." }, { "t": "REST", "ge": "API-ის სტილი HTTP/URL წესებით.", "en": "An API style using HTTP/URL rules." }, { "t": "JSON", "ge": "მონაცემთა ფორმატი ობიექტებით/მასივებით.", "en": "A data format using objects/arrays." }, { "t": "Header", "ge": "მეტა-ინფორმაცია მოთხოვნა/პასუხში.", "en": "Metadata in a request/response." }, { "t": "Body", "ge": "მთავარი შინაარსი მოთხოვნა/პასუხში.", "en": "Main content in a request/response." }, { "t": "Payload", "ge": "გაგზავნილი/მიღებული ძირითადი მონაცემი.", "en": "The main data sent/received." }, { "t": "Query string", "ge": "URL-ის პარამეტრები ?a=1&b=2.", "en": "URL parameters like ?a=1&b=2." }, { "t": "Route", "ge": "მისამართის წესი აპში/სერვერზე.", "en": "A path rule in an app/server." }, { "t": "Authentication", "ge": "ვინ ხარ? (ლოგინი/ტოკენი).", "en": "Who are you? (login/token)." }, { "t": "Authorization", "ge": "რა გაქვს უფლება?", "en": "What are you allowed to do?" }], "📡 HTTP Methods & Codes": [{ "t": "GET", "ge": "მონაცემის მიღება.", "en": "Retrieve data." }, { "t": "POST", "ge": "გაგზავნა/შექმნა.", "en": "Send/create data." }, { "t": "PUT", "ge": "სრული ჩანაცვლებით განახლება.", "en": "Replace/update completely." }, { "t": "PATCH", "ge": "ნაწილობრივი განახლება.", "en": "Update partially." }, { "t": "DELETE", "ge": "წაშლა.", "en": "Delete." }, { "t": "Status Code", "ge": "სერვერის პასუხის კოდი.", "en": "A server response code." }, { "t": "200 OK", "ge": "ყველაფერი წარმატებით.", "en": "Everything succeeded." }, { "t": "201 Created", "ge": "წარმატებით შეიქმნა.", "en": "Successfully created." }, { "t": "301 Moved Permanently", "ge": "მუდმივი გადამისამართება.", "en": "Permanent redirect." }, { "t": "302 Found", "ge": "დროებითი გადამისამართება.", "en": "Temporary redirect." }, { "t": "400 Bad Request", "ge": "ცუდი მოთხოვნა.", "en": "Bad request." }, { "t": "401 Unauthorized", "ge": "არ ხარ ავტენტიფიცირებული.", "en": "Not authenticated." }, { "t": "403 Forbidden", "ge": "უფლება არ გაქვს.", "en": "Not allowed." }, { "t": "404 Not Found", "ge": "ვერ მოიძებნა.", "en": "Not found." }, { "t": "500 Internal Server Error", "ge": "სერვერის შიდა შეცდომა.", "en": "Server internal error." }], "🧭 Browser & DevTools": [{ "t": "Browser", "ge": "პროგრამა ვებგვერდების სანახავად.", "en": "Software to view web pages." }, { "t": "Rendering", "ge": "ბრაუზერი როგორ ხატავს გვერდს.", "en": "How the browser draws the page." }, { "t": "DevTools", "ge": "ბრაუზერის დევ ინსტრუმენტები.", "en": "Browser developer tools." }, { "t": "Elements panel", "ge": "DOM/HTML-ის ნახვა და რედაქტი.", "en": "View/edit the DOM/HTML." }, { "t": "Console", "ge": "ლოგები/შეცდომები JS-დან.", "en": "Logs/errors from JavaScript." }, { "t": "Network tab", "ge": "request/response-ის ნახვა.", "en": "View network requests/responses." }, { "t": "Cache", "ge": "დროებითი ფაილები სიჩქარისთვის.", "en": "Temporary files for speed." }, { "t": "Cookies", "ge": "პატარა მონაცემი ბრაუზერში.", "en": "Small data stored in the browser." }, { "t": "Local Storage", "ge": "შენახვა, რომელიც არ იშლება დახურვაზე.", "en": "Storage that persists after closing." }, { "t": "Session Storage", "ge": "შენახვა, რომელიც ქრება ტაბის დახურვაზე.", "en": "Storage cleared when the tab closes." }, { "t": "Viewport", "ge": "ეკრანის ხილული ნაწილი.", "en": "The visible area of the screen." }, { "t": "Responsive design", "ge": "დიზაინი, რომელიც ერგება ზომას.", "en": "Design that adapts to screen size." }], "✅ Standards & Quality": [{ "t": "W3C", "ge": "ვებ-სტანდარტების კონსორციუმი.", "en": "The web standards consortium." }, { "t": "Web standards", "ge": "წესები, რომ ვები ერთნაირად იმუშაოს.", "en": "Rules so the web works consistently." }, { "t": "Validator", "ge": "კოდის წესების შემმოწმებელი.", "en": "A tool that checks code validity." }, { "t": "HTML validation", "ge": "HTML წესების შემოწმება.", "en": "Checking HTML validity." }, { "t": "Cross-browser compatibility", "ge": "ერთნაირად მუშაობა ბრაუზერებში.", "en": "Works similarly across browsers." }, { "t": "Accessibility (A11y)", "ge": "ხელმისაწვდომი ყველასთვის.", "en": "Usable for everyone, incl. disabilities." }, { "t": "SEO", "ge": "საძიებო სისტემებისთვის ოპტიმიზაცია.", "en": "Search engine optimization." }, { "t": "Testing", "ge": "შემოწმება/ტესტირება.", "en": "Checking/testing behavior." }, { "t": "Bug", "ge": "არასწორი ქცევა პროგრამაში.", "en": "Incorrect behavior in software." }, { "t": "Debug", "ge": "შეცდომის მოძებნა და გასწორება.", "en": "Finding and fixing issues." }, { "t": "Deploy", "ge": "აპის გაშვება live-ზე.", "en": "Publishing an app live." }, { "t": "Production", "ge": "რეალური მომხმარებლების გარემო.", "en": "Live environment for real users." }, { "t": "Development", "ge": "დამუშავების/ტესტირების გარემო.", "en": "Building/testing environment." }, { "t": "Git", "ge": "ვერსიების მართვის სისტემა.", "en": "Version control system." }, { "t": "GitHub", "ge": "Git რეპოების პლატფორმა.", "en": "Platform for Git repositories." }], "🧱 HTML (Last) Core": [{ "t": "HTML", "ge": "ვებგვერდის სტრუქტურის ენა.", "en": "The structure language of web pages." }, { "t": "Markup Language", "ge": "ნიშნებით აღწერს სტრუქტურას.", "en": "Describes structure with tags." }, { "t": "Tag", "ge": "ნიშანი HTML-ში (<p>, <a>).", "en": "A marker in HTML (<p>, <a>)." }, { "t": "Element", "ge": "ტეგი + შინაარსი ერთად.", "en": "Tag + content together." }, { "t": "Attribute", "ge": "დამატებითი პარამეტრი ტეგში.", "en": "Extra setting in a tag." }, { "t": "Value", "ge": "ატრიბუტის მნიშვნელობა.", "en": "The attribute value." }, { "t": "Nesting", "ge": "ელემენტების ჩადგმა ერთმანეთში.", "en": "Putting elements inside others." }, { "t": "Semantic HTML", "ge": "ტეგები მნიშვნელობით (header, nav).", "en": "Tags chosen by meaning (header, nav)." }, { "t": "DOCTYPE", "ge": "ბრაუზერს ეუბნება HTML5 რეჟიმი.", "en": "Tells the browser to use HTML5 mode." }, { "t": "html", "ge": "დოკუმენტის ფესვი ტეგი.", "en": "Root tag of the document." }, { "t": "head", "ge": "მეტა ინფორმაცია (title, meta).", "en": "Metadata (title, meta)." }, { "t": "body", "ge": "რაც ეკრანზე ჩანს.", "en": "What appears on the page." }, { "t": "meta", "ge": "კონფიგურაცია/აღწერა (charset).", "en": "Configuration/metadata (charset)." }, { "t": "title", "ge": "ტაბის სათაური.", "en": "Tab title." }, { "t": "link", "ge": "გარე რესურსის მიერთება (CSS).", "en": "Link external resources (CSS)." }, { "t": "script", "ge": "JavaScript-ის ჩართვა.", "en": "Include JavaScript." }], "🧾 HTML Common Tags (Last)": [{ "t": "h1", "ge": "მთავარი სათაური.", "en": "Main heading." }, { "t": "h2", "ge": "ქვესათაური.", "en": "Subheading." }, { "t": "h3", "ge": "ქვესათაური (დონე 3).", "en": "Subheading (level 3)." }, { "t": "p", "ge": "აბზაცი.", "en": "Paragraph." }, { "t": "span", "ge": "inline კონტეინერი.", "en": "Inline container." }, { "t": "strong", "ge": "მნიშვნელობის გაძლიერება.", "en": "Strong importance." }, { "t": "em", "ge": "აქცენტი.", "en": "Emphasis." }, { "t": "br", "ge": "ხაზის გადატანა.", "en": "Line break." }, { "t": "hr", "ge": "თემატური გამყოფი.", "en": "Thematic break." }, { "t": "ul", "ge": "დაუნომრავი სია.", "en": "Unordered list." }, { "t": "ol", "ge": "დანომრილი სია.", "en": "Ordered list." }, { "t": "li", "ge": "სიის ელემენტი.", "en": "List item." }, { "t": "a", "ge": "ბმული.", "en": "Link." }, { "t": "img", "ge": "სურათი.", "en": "Image." }, { "t": "alt", "ge": "სურათის ტექსტური აღწერა.", "en": "Image text alternative." }, { "t": "header", "ge": "სექციის თავი.", "en": "Header section." }, { "t": "nav", "ge": "მენიუ/ნავიგაცია.", "en": "Navigation menu." }, { "t": "main", "ge": "მთავარი კონტენტი.", "en": "Main content." }, { "t": "section", "ge": "ლოგიკური სექცია.", "en": "Logical section." }, { "t": "article", "ge": "დამოუკიდებელი ბლოკი/სტატია.", "en": "Independent article/block." }, { "t": "aside", "ge": "მეორეხარისხოვანი კონტენტი.", "en": "Secondary content." }, { "t": "footer", "ge": "ქვედა ნაწილი.", "en": "Footer section." }, { "t": "figure", "ge": "მედიის ბლოკი აღწერით.", "en": "Media block with caption." }, { "t": "figcaption", "ge": "figure-ის აღწერა.", "en": "Figure caption." }, { "t": "div", "ge": "ნეიტრალური კონტეინერი.", "en": "Neutral container." }] };
+let categories = [];
+let termMap = {};
+let total = 0;
 
-    let i = 0;
-    let lang = "ge"; // 'ge' or 'en'
-    const savedLang = localStorage.getItem("tt_lang");
-    if (savedLang === "ge" || savedLang === "en") lang = savedLang;
+const counter = document.getElementById('counter');
+const view = document.getElementById('view');
+const navList = document.getElementById('navList');
 
-    const langGe = document.getElementById('langGe');
-    const langEn = document.getElementById('langEn');
+const langGeBtn = document.getElementById('langGe');
+const langEnBtn = document.getElementById('langEn');
+const uiTitle = document.getElementById('uiTitle');
+const uiSubtitle = document.getElementById('uiSubtitle');
+const uiCategories = document.getElementById('uiCategories');
 
-    function setLang(next) {
-      lang = next;
-      localStorage.setItem("tt_lang", lang);
-      langGe.classList.toggle('active', lang === 'ge');
-      langEn.classList.toggle('active', lang === 'en');
-      setUIText();
-      render();
-    }
-    langGe.addEventListener('click', () => setLang('ge'));
-    langEn.addEventListener('click', () => setLang('en'));
-    // Apply saved language state
-    langGe.classList.toggle('active', lang === 'ge');
-    langEn.classList.toggle('active', lang === 'en');
+let i = 0;
+let lang = 'ge'; // 'ge' or 'en'
 
-    const uiTitle = document.getElementById('uiTitle');
-    const uiSubtitle = document.getElementById('uiSubtitle');
-    const uiCategories = document.getElementById('uiCategories');
+// Restore language from localStorage
+const savedLang = localStorage.getItem('tt_lang');
+if (savedLang === 'ge' || savedLang === 'en') lang = savedLang;
 
-    function setUIText() {
-      if (!uiTitle) return;
-      if (lang === 'ge') {
-        uiTitle.textContent = 'ვებ-ფუნდამენტები — ტერმინების ლექსიკონი';
-        uiSubtitle.textContent = 'ლექციის გეგმა: ტერმინები კატეგორიებად + 1 წინადადება';
-        if (uiCategories) uiCategories.textContent = 'კატეგორიები';
-      } else {
-        uiTitle.textContent = 'Web Fundamentals — Term Dictionary';
-        uiSubtitle.textContent = 'Lecture guide: terms by category + one sentence';
-        if (uiCategories) uiCategories.textContent = 'Categories';
-      }
-    }
+function setUIText() {
+  if (lang === 'ge') {
+    uiTitle.textContent = 'ვებ-ფუნდამენტები — ტერმინების ლექსიკონი';
+    uiSubtitle.textContent = 'ლექციის გეგმა: ტერმინები კატეგორიებად + 1 წინადადება';
+    uiCategories.textContent = 'კატეგორიები';
+  } else {
+    uiTitle.textContent = 'Web Fundamentals — Term Dictionary';
+    uiSubtitle.textContent = 'Lecture guide: terms by category + one sentence';
+    uiCategories.textContent = 'Categories';
+  }
+}
 
+function setLang(next) {
+  lang = next;
+  localStorage.setItem('tt_lang', lang);
 
-    function setActive() {
-      btns.forEach(b => b.classList.toggle('active', Number(b.dataset.i) === i));
-      counter.textContent = `${pad2(i + 1)} / ${pad2(total)}`;
-    }
+  langGeBtn.classList.toggle('active', lang === 'ge');
+  langEnBtn.classList.toggle('active', lang === 'en');
 
-    function render() {
-      setUIText();
-      const cat = categories[i];
-      const items = (termMap[cat] || []);
-      const filtered = items;
+  setUIText();
+  render();
+}
 
-      const rows = filtered.map(x => `
-      <div class="row">
-        <div class="term">${x.t}</div>
-        <div class="def">${lang === 'ge' ? x.ge : x.en}</div>
-      </div>`).join('');
+langGeBtn.addEventListener('click', () => setLang('ge'));
+langEnBtn.addEventListener('click', () => setLang('en'));
 
-      view.innerHTML = `
-      <div class="kicker">${pad2(i + 1)} • ${cat}</div>
-      <h1>${cat}</h1>
-      <p>${lang === 'ge'
-          ? 'ტერმინი + 1 წინადადება. ენა შეცვალე ზედა მარჯვენა კუთხეში.'
-          : 'Term + one sentence. Switch language in the top right.'}</p>
+// Apply saved language state on load
+langGeBtn.classList.toggle('active', lang === 'ge');
+langEnBtn.classList.toggle('active', lang === 'en');
 
-      <div class="toolbar">
-        <div style="display:flex; gap:10px">
-          <button class="btn" id="prev">⬅</button>
-          <button class="btn primary" id="next">➡</button>
-        </div>
+function buildNav() {
+  navList.innerHTML = '';
+  categories.forEach((cat, idx) => {
+    const btn = document.createElement('button');
+    btn.className = 'navbtn' + (idx === 0 ? ' active' : '');
+    btn.dataset.i = String(idx);
+    btn.textContent = `${pad2(idx + 1)} • ${cat}`;
+    btn.addEventListener('click', () => go(idx));
+    navList.appendChild(btn);
+  });
+}
+
+function setActiveButton() {
+  const buttons = Array.from(navList.querySelectorAll('.navbtn'));
+  buttons.forEach((b) => b.classList.toggle('active', Number(b.dataset.i) === i));
+  counter.textContent = `${pad2(i + 1)} / ${pad2(total)}`;
+}
+
+function render() {
+  setUIText();
+
+  const cat = categories[i];
+  const items = (termMap[cat] || []);
+
+  const rows = items.map(x => `
+    <div class="row">
+      <div class="term">${x.t}</div>
+      <div class="def">${lang === 'ge' ? x.ge : x.en}</div>
+    </div>
+  `).join('');
+
+  view.innerHTML = `
+    <div class="kicker">${pad2(i + 1)} • ${cat}</div>
+    <h1>${cat}</h1>
+    <p>${lang === 'ge'
+      ? 'ტერმინი + 1 წინადადება. ენა შეცვალე ზედა მარჯვენა კუთხეში.'
+      : 'Term + one sentence. Switch language in the top right.'}</p>
+
+    <div class="toolbar">
+      <div style="display:flex; gap:10px">
+        <button class="btn" id="prev">⬅</button>
+        <button class="btn primary" id="next">➡</button>
       </div>
+    </div>
 
-      <div class="list">${rows || `<div class='row'><div class='term'>—</div><div class='def'>${lang === 'ge' ? 'ვერ მოიძებნა' : 'No results'}</div></div>`}</div>
-    `; document.getElementById('next').addEventListener('click', () => go(i + 1));
-      document.getElementById('prev').addEventListener('click', () => go(i - 1));
-    }
+    <div class="list">${rows || `
+      <div class="row">
+        <div class="term">—</div>
+        <div class="def">${lang === 'ge' ? 'კატეგორიაში მონაცემი არ მოიძებნა.' : 'No data found in this category.'}</div>
+      </div>
+    `}</div>
+  `;
 
-    function go(n) {
-      i = (n + total) % total; setActive();
-      render();
-    }
+  document.getElementById('next').addEventListener('click', () => go(i + 1));
+  document.getElementById('prev').addEventListener('click', () => go(i - 1));
+}
 
-    btns.forEach(b => b.addEventListener('click', () => go(Number(b.dataset.i))));
+function go(n) {
+  i = (n + total) % total;
+  setActiveButton();
+  render();
+}
 
-    document.addEventListener('keydown', (e) => {
-      if (['ArrowRight', 'j', 'J'].includes(e.key)) go(i + 1);
-      if (['ArrowLeft', 'k', 'K'].includes(e.key)) go(i - 1);
-      if (e.key === 'Home') go(0);
-      if (e.key === 'End') go(total - 1);
-      if (e.key === '/') {
-        const s = document.getElementById('search');
-        if (s) { e.preventDefault(); s.focus(); }
-      }
-    });
+document.addEventListener('keydown', (e) => {
+  if (['ArrowRight', 'j', 'J'].includes(e.key)) go(i + 1);
+  if (['ArrowLeft', 'k', 'K'].includes(e.key)) go(i - 1);
+  if (e.key === 'Home') go(0);
+  if (e.key === 'End') go(total - 1);
+});
 
-    go(0);
+async function loadData() {
+  try {
+    const res = await fetch(DATA_URL, { cache: 'no-store' });
+    if (!res.ok) throw new Error(`Failed to load JSON (${res.status})`);
+    const data = await res.json();
+
+    categories = Array.isArray(data.categories) ? data.categories : [];
+    termMap = data.termMap && typeof data.termMap === 'object' ? data.termMap : {};
+    total = categories.length;
+
+    if (!total) throw new Error('No categories found in JSON');
+
+    buildNav();
+    setActiveButton();
+    render();
+  } catch (err) {
+    console.error(err);
+    setUIText();
+    counter.textContent = '-- / --';
+    view.innerHTML = `
+      <h1 style="margin:0 0 10px 0;">${lang === 'ge' ? 'ვერ ჩაიტვირთა მონაცემი' : 'Failed to load content'}</h1>
+      <p style="margin:0; color: rgba(238,244,255,.78);">
+        ${lang === 'ge'
+          ? 'შეამოწმე DATA_URL (terms.json ბმული) და გახსენი პროექტი ლოკალურ სერვერზე (file:// არ მუშაობს fetch-თან).'
+          : 'Check DATA_URL (terms.json link) and run a local server (fetch does not work reliably on file://).'}
+      </p>
+    `;
+  }
+}
+
+loadData();
