@@ -85,6 +85,28 @@ English version below
 └── README.md
 ```
 
+---
+
+⟪⟪ რესურსები ⟫⟫
+
+ქვემოთ ჩამოთვლილი რესურსები არის ის წყაროები,  
+რომლებზეც რეალურად ეყრდნობა თანამედროვე ვებ-ტექნოლოგიები.
+
+ლექციაზე ხშირად ვახსენებ მათ,  
+მაგრამ სტუდენტებს ვურჩევ **არა ყველაფრის ერთდროულად წაკითხვას**,  
+არამედ ეტაპობრივად დაბრუნებას საჭიროების მიხედვით.
+
+- MDN Web Docs  
+  https://developer.mozilla.org  
+  (ყველაზე პრაქტიკული და გასაგები დოკუმენტაცია)
+
+
+- W3C  
+  https://www.w3.org  
+  (ვებ-სტანდარტების ოფიციალური ორგანიზაცია)
+
+
+
 
 
 
@@ -170,3 +192,24 @@ The project is intentionally minimal:
 ├── index.js 
 └── README.md
 ```
+
+---
+
+⟪⟪ Resources ⟫⟫
+
+The following resources are the foundations  
+of how modern web technologies actually work.
+
+I often reference them during lectures,  
+but students are encouraged **not to read everything at once**,  
+and instead return to these links when a topic becomes relevant.
+
+- MDN Web Docs  
+  https://developer.mozilla.org  
+  (the most practical and beginner-friendly documentation)
+
+
+- W3C  
+  https://www.w3.org  
+  (official web standards organization)
+
