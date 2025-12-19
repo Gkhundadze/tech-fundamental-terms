@@ -1,5 +1,5 @@
 
-const DATA_URL = './terms.json';
+const DATA_URL = 'https://raw.githubusercontent.com/Gkhundadze/tech-fundamental-terms/refs/heads/main/terms.json';
 
 const pad2 = (n) => String(n).padStart(2, '0');
 

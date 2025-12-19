@@ -7,8 +7,8 @@
     "HTTP Methods & Codes",
     "Browser & DevTools",
     "Standards & Quality",
-    "HTML (Last) Core",
-    "HTML Common Tags (Last)"
+    "HTML Core",
+    "HTML Common Tags"
   ],
   "termMap": {
     "Tech Basics": [
@@ -535,7 +535,7 @@
         "en": "Platform for Git repositories."
       }
     ],
-    "HTML (Last) Core": [
+    "HTML Core": [
       {
         "t": "HTML",
         "ge": "ვებგვერდის სტრუქტურის ენა.",
@@ -617,7 +617,7 @@
         "en": "Include JavaScript."
       }
     ],
-    "HTML Common Tags (Last)": [
+    "HTML Common Tags": [
       {
         "t": "h1",
         "ge": "მთავარი სათაური.",
