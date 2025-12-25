@@ -8,7 +8,12 @@
     "Browser & DevTools",
     "Standards & Quality",
     "HTML Core",
-    "HTML Common Tags"
+    "HTML Common Tags",
+    "CSS Core Concepts",
+    "CSS Box Model",
+    "CSS Layout Basics",
+    "CSS Colors & Text",
+    "HTML Forms Basics"
   ],
   "termMap": {
     "Tech Basics": [
@@ -582,19 +587,9 @@
         "en": "Tells the browser to use HTML5 mode."
       },
       {
-        "t": "html",
-        "ge": "დოკუმენტის ფესვი ტეგი.",
-        "en": "Root tag of the document."
-      },
-      {
         "t": "head",
         "ge": "მეტა ინფორმაცია (title, meta).",
         "en": "Metadata (title, meta)."
-      },
-      {
-        "t": "body",
-        "ge": "რაც ეკრანზე ჩანს.",
-        "en": "What appears on the page."
       },
       {
         "t": "meta",
@@ -694,11 +689,6 @@
         "en": "Image text alternative."
       },
       {
-        "t": "header",
-        "ge": "სექციის თავი.",
-        "en": "Header section."
-      },
-      {
         "t": "nav",
         "ge": "მენიუ/ნავიგაცია.",
         "en": "Navigation menu."
@@ -742,6 +732,131 @@
         "t": "div",
         "ge": "ნეიტრალური კონტეინერი.",
         "en": "Neutral container."
+      }
+    ],
+    "CSS Core Concepts": [
+      {
+        "t": "CSS",
+        "ge": "სტილების ენა, რომელიც HTML ელემენტების გარეგნობას აკონტროლებს",
+        "en": "A styling language that controls how HTML elements look"
+      },
+      {
+        "t": "Selector",
+        "ge": "CSS წესის ნაწილი, რომელიც ამბობს რომელ HTML ელემენტზე ვმუშაობთ",
+        "en": "Part of CSS that selects which HTML element to style"
+      },
+      {
+        "t": "Property",
+        "ge": "CSS თვისება, რომელიც განსაზღვრავს რას ვცვლით",
+        "en": "A CSS setting that defines what you change"
+      },
+      {
+        "t": "Rule",
+        "ge": "selector + property + value ერთად",
+        "en": "Selector with its properties and values together"
+      }
+    ],
+    "CSS Box Model": [
+      {
+        "t": "Box Model",
+        "ge": "ყველა HTML ელემენტი წარმოდგენილია ყუთის სახით",
+        "en": "Every HTML element is treated as a box"
+      },
+      {
+        "t": "Content",
+        "ge": "ელემენტის შიგთავსი (ტექსტი ან სურათი)",
+        "en": "The content inside an element"
+      },
+      {
+        "t": "Padding",
+        "ge": "სივრცე content-სა და border-ს შორის",
+        "en": "Space between content and border"
+      },
+      {
+        "t": "Border",
+        "ge": "ელემენტის საზღვარი",
+        "en": "The edge around an element"
+      },
+      {
+        "t": "Margin",
+        "ge": "სივრცე ელემენტებს შორის",
+        "en": "Space outside the element"
+      }
+    ],
+    "CSS Layout Basics": [
+      {
+        "t": "Display",
+        "ge": "განსაზღვრავს როგორ ჩანს ელემენტი გვერდზე",
+        "en": "Defines how an element is displayed"
+      },
+      {
+        "t": "Block Element",
+        "ge": "იკავებს მთელ ხაზს",
+        "en": "Takes up the full width of a line"
+      },
+      {
+        "t": "Inline Element",
+        "ge": "იკავებს მხოლოდ საჭირო ადგილს",
+        "en": "Takes only the space it needs"
+      },
+      {
+        "t": "Inline-block",
+        "ge": "inline ელემენტი, რომელსაც ზომების მიცემა შეუძლია",
+        "en": "Inline element that can have width and height"
+      },
+      {
+        "t": "Width / Height",
+        "ge": "ელემენტის სიგანე და სიმაღლე",
+        "en": "Element’s width and height"
+      }
+    ],
+    "CSS Colors & Text": [
+      {
+        "t": "Color",
+        "ge": "ტექსტის ფერი",
+        "en": "Text color"
+      },
+      {
+        "t": "Background-color",
+        "ge": "ელემენტის ფონი",
+        "en": "Background color of an element"
+      },
+      {
+        "t": "Font-size",
+        "ge": "ტექსტის ზომა",
+        "en": "Size of the text"
+      },
+      {
+        "t": "Font-family",
+        "ge": "შრიფტის ტიპი",
+        "en": "Type of font"
+      },
+      {
+        "t": "Text-align",
+        "ge": "ტექსტის გასწორება",
+        "en": "Aligns text (left, center, right)"
+      }
+    ],
+    "HTML Forms Basics": [
+      {
+        "t": "form",
+        "ge": "ელემენტი, რომელიც მონაცემების გაგზავნას ემსახურება",
+        "en": "Element used to send data"
+      },
+      {
+        "t": "label",
+        "ge": "input-ის აღწერა",
+        "en": "Description for an input field"
+      },
+      {
+        "t": "button",
+        "ge": "ღილაკი",
+        "en": "A clickable button"
+      },
+      {
+        "t": "placeholder",
+        "ge": "მინიშნება input-ის შიგნით",
+        "en": "Hint text inside an input"
       }
     ]
   }
