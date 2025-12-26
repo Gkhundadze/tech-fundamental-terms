@@ -2,7 +2,7 @@
 English version below
 
 
-⟪⟪ ვებ-ფუნდამენტები — ტერმინების ლექსიკონი ⟫⟫
+⟪⟪ ტექ-ფუნდამენტები — ტერმინების ლექსიკონი ⟫⟫
 
 ეს რეპოზიტორია არის **სასწავლო მასალა**, რომელიც გამოიყენება ლექციაზე  
 იმისთვის, რომ სტუდენტებმა თავიდანვე **ტერმინებში გარკვევა** შეძლონ  
@@ -111,7 +111,7 @@ English version below
 
 
 
-⟪⟪ Web Fundamentals — Term Dictionary ⟫⟫
+⟪⟪ Tech Fundamentals — Term Dictionary ⟫⟫
 
 This repository contains a **simple educational presentation** that I use at the beginning of web development courses.
 
